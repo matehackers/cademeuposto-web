@@ -1,3 +1,36 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+
+use CGI qw(:standard);
+use DBI;
+
+sub croak {
+	die "$0: @_: $!\n"
+}
+
+my $arquivo_banco = './db/areas-de-atuacao-aps.db';
+
+my $dbh = DBI->connect(
+	"dbi:SQLite:dbname=$arquivo_banco",
+	"",
+	"",
+	{ RaiseError => 1 },
+) or croak $DBI::errstr;
+
+my $rua = param('rua') || "Nome da rua";
+my $limit = param('de') || '0';
+
+my ${select_stmt} = "SELECT * FROM postos WHERE NOME_DA_RUA LIKE \"${rua}\" COLLATE NOCASE;";
+my ${sth} = ${dbh}->prepare(${select_stmt}) or croak $DBI::errstr;
+${sth}->execute() or croak $DBI::errstr;
+
+my $posto = ${sth}->fetchrow_array;
+
+print <<EOF;
+Content-Type: text/html; charset=utf-8
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +82,7 @@
 		<img src="./favicon.ico" />
 		<h1>Busca de unidades de sa&uacute;de de refer&ecirc;ncia em Porto Alegre</h1>
 		</center>
-		<p>Entre com o nome (ou parte do nome) e o número da casa para encontrar a unidade de sa&uacute;de de refer&ecirc;ncia.</p>
+		<p>Entre com o nome e o número da casa para encontrar a unidade de sa&uacute;de de refer&ecirc;ncia.</p>
 	</div>
 </div> <!-- /jumbotron -->
 
@@ -65,24 +98,63 @@
 			</div>
 			<button type="submit" class="btn btn-success">Buscar</button>
 		</form>
+
+		<form action='./index.pl'>
+			<div>Nome da rua: <input name='rua' size='20'>${rua}</div>
+			<div><input type='submit'></div>
+		</form>
+
 		</center>
 	</div> <!-- /container -->
 <!-- /formulario -->
+EOF
 
+if (${sth}->fetchrow_array) {
+print <<EOF;
 <!-- resultado -->
 <div class="container">
+EOF
 
+while ( my @{resultados} = ${sth}->fetchrow_array ) {
+print <<EOF;
+<!--
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-lg-8">.col-xs-12 .col-sm-6 .col-lg-8</div>
-		<div class="col-xs-6 col-lg-4">.col-xs-6 .col-lg-4</div>
+		<div class="col-xs-12 col-sm-6 col-lg-8">&nbsp;</div>
+		<div class="col-xs-6 col-lg-4">&nbsp;</div>
+	</div>
+-->
+	<div class="row">
+		<div class="col-xs-6 col-sm-4">${resultados[0]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[1]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[2]}</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-		<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-		<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+		<div class="col-xs-6 col-sm-4">${resultados[3]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[4]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[5]}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-sm-4">${resultados[6]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[7]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[8]}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-sm-4">${resultados[9]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[10]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[11]}</div>
 	</div>
 <!-- /resultado -->
+EOF
+}
+} else {
+print <<EOF;
+<div class="container">
+	Nenhum resultado.
+</div>
+EOF
+}
 
+print <<EOF;
 	<hr>
 
 </div> <!-- /container -->
@@ -127,4 +199,7 @@
 <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
+EOF
+
+undef(${dbh});
 
