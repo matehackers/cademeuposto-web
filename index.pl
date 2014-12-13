@@ -20,8 +20,7 @@ my $dbh = DBI->connect(
 ) or croak $DBI::errstr;
 
 my $rua = param('rua') || "Nome da rua";
-my $numero = param('numero') || "Número da casa";
-my $limit = param('de') || '0';
+#my $numero = param('numero') || "Número da casa";
 
 my ${select_stmt} = "SELECT * FROM postos WHERE NOME_DA_RUA LIKE \"${rua}\" ORDER BY INICIAL COLLATE NOCASE;";
 my ${sth} = ${dbh}->prepare(${select_stmt}) or croak $DBI::errstr;
