@@ -85,7 +85,6 @@ Content-Type: text/html; charset=utf-8
 		<img src="./assets/pictogram-din-e003-first_aid.png" />
 		<h1>Busca unidades de sa&uacute;de de refer&ecirc;ncia em Porto Alegre</h1>
 		<p>Entre com o nome <b>completo</b> da rua para encontrar a unidade de sa&uacute;de de refer&ecirc;ncia (APS).</p>
-		<p>Em caso de d&uacute;vida, ligue para o <b>156</b> com qualquer telefone de Porto Alegre - RS ou (51) 3289-0156, op&ccedil;&atilde;o 9.</p>
 		</center>
 	</div>
 </div> <!-- /jumbotron -->
@@ -140,10 +139,11 @@ EOF
 }
 
 print <<EOF;
+	<p>Em caso de d&uacute;vida, ligue para o <b>156</b> com qualquer telefone de Porto Alegre - RS ou (51) 3289-0156, op&ccedil;&atilde;o 9.</p>
+
 	<hr>
 
 </div> <!-- /container -->
-
 
 <div class="container">
 	<div class="row">
