@@ -1,0 +1,15 @@
+.separador {
+	padding:1em;
+}
+nav.navbar-fixed-top {
+	background-color: #D8D8D8;
+}
+.navbar-header a.navbar-brand {
+	color:#0F0F0F;
+	text-shadow:white 0.1em 0.1em;
+}
+.navbar-header a.navbar-brand:hover {
+	color:white;
+	text-shadow:#0F0F0F 0.1em 0.1em;
+}
+
