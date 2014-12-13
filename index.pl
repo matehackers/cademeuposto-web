@@ -20,9 +20,10 @@ my $dbh = DBI->connect(
 ) or croak $DBI::errstr;
 
 my $rua = param('rua') || "Nome da rua";
+my $numero = param('numero') || "Número da casa";
 my $limit = param('de') || '0';
 
-my ${select_stmt} = "SELECT * FROM postos WHERE NOME_DA_RUA LIKE \"${rua}\" COLLATE NOCASE;";
+my ${select_stmt} = "SELECT * FROM postos WHERE NOME_DA_RUA LIKE \"${rua}\" ORDER BY INICIAL COLLATE NOCASE;";
 my ${sth} = ${dbh}->prepare(${select_stmt}) or croak $DBI::errstr;
 ${sth}->execute() or croak $DBI::errstr;
 
@@ -109,45 +110,28 @@ Content-Type: text/html; charset=utf-8
 <!-- /formulario -->
 EOF
 
+my @{resultados};
+
 if (${sth}->fetchrow_array) {
 print <<EOF;
 <!-- resultado -->
 <div class="container">
+	<h2>Quem mora na(o)...</h2>
 EOF
 
-while ( my @{resultados} = ${sth}->fetchrow_array ) {
-print <<EOF;
-<!--
+	while ( @{resultados} = ${sth}->fetchrow_array ) {
+		print <<EOF;
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-lg-8">&nbsp;</div>
-		<div class="col-xs-6 col-lg-4">&nbsp;</div>
-	</div>
--->
-	<div class="row">
-		<div class="col-xs-6 col-sm-4">${resultados[0]}</div>
-		<div class="col-xs-6 col-sm-4">${resultados[1]}</div>
-		<div class="col-xs-6 col-sm-4">${resultados[2]}</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 col-sm-4">${resultados[3]}</div>
-		<div class="col-xs-6 col-sm-4">${resultados[4]}</div>
-		<div class="col-xs-6 col-sm-4">${resultados[5]}</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 col-sm-4">${resultados[6]}</div>
-		<div class="col-xs-6 col-sm-4">${resultados[7]}</div>
-		<div class="col-xs-6 col-sm-4">${resultados[8]}</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 col-sm-4">${resultados[9]}</div>
-		<div class="col-xs-6 col-sm-4">${resultados[10]}</div>
-		<div class="col-xs-6 col-sm-4">${resultados[11]}</div>
+		<div class="col-xs-6 col-sm-4">${resultados[1]} ${resultados[2]} ${resultados[3]}</div>
+		<div class="col-xs-6 col-sm-4">do número ${resultados[4]} até o ${resultados[5]}, </div>
+		<div class="col-xs-6 col-sm-4">deve ir na(o) ${resultados[6]}.</div>
 	</div>
 <!-- /resultado -->
 EOF
-}
+
+	}
 } else {
-print <<EOF;
+	print <<EOF;
 <div class="container">
 	Nenhum resultado.
 </div>
