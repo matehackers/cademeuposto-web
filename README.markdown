@@ -10,6 +10,21 @@ Este é o serviço web que permite buscar unidades de saúde de referência atra
 
 Atualmente utiliza Bootstrap, Sqlite, HTML, CSS.
 
+Demonstração
+--
+
+O serviço está atualmente ativo em https://util.hi.ato.br/cademeuposto/
+
+A fazer
+--
+
+[ ] Migrar para MySQL
+[ ] Implementar busca com parte do nome da rua
+[ ] Implementar busca fonética
+[ ] Implementar select2
+[ ] Melhorar interface
+[ ] Adicionar endereço e telefone das ASPs
+
 Código fonte e licença
 --
 
