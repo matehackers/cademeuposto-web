@@ -84,7 +84,7 @@ Content-Type: text/html; charset=utf-8
 		<center>
 		<img src="./assets/pictogram-din-e003-first_aid.png" />
 		<h1>Busca unidades de sa&uacute;de de refer&ecirc;ncia em Porto Alegre</h1>
-		<p>Entre com o nome completo da rua para encontrar a unidade de sa&uacute;de de refer&ecirc;ncia (APS).</p>
+		<p>Entre com o nome <b>completo</b> da rua para encontrar a unidade de sa&uacute;de de refer&ecirc;ncia (APS).</p>
 		<p>Em caso de d&uacute;vida, ligue para o <b>156</b> com qualquer telefone de Porto Alegre - RS ou (51) 3289-0156, op&ccedil;&atilde;o 9.</p>
 		</center>
 	</div>
@@ -95,8 +95,7 @@ Content-Type: text/html; charset=utf-8
 		<center>
 		<form class="navbar-form" role="form" action="./#resultado">
 			<div class="form-group">
-				<span>Nome da rua:</span>
-				<input type="text" name="rua" placeholder="Nome da rua ou parte" class="form-control" value="${rua}">
+				<input type="text" name="rua" placeholder="Nome da rua" class="form-control" value="${rua}">
 			</div>
 <!--
 			<div class="form-group">
