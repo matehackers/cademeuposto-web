@@ -15,8 +15,20 @@ Demonstração
 
 O serviço está atualmente ativo em https://util.hi.ato.br/cademeuposto/
 
-A fazer
+A fazer (Issues são bemvindas, colaborações mais ainda!)
 --
+
+### Documentação
+
+- [ ] Explicar, automatizar e tutorializar o processo de conversão do banco de dados
+
+### Desenvolvimento
+
+- [ ] Reescrever em Ruby e Python
+
+### Backend
+
+- [ ] Melhorar tratamento de erros do PERL
 
 ### Banco de dados
 
@@ -26,16 +38,19 @@ A fazer
 - [ ] Criar API com json
 	- [ ] Implementar select2
 
-### Design e frontend
+### Frontend
 
 - [ ] Melhorar interface
+- [ ] Remover Mussum Ipsums e adicionar informações
 
 ### Operacional
 
+- [ ] Verificar consistência dos dados com PMPA/SMGL/SMS
 - [ ] Adicionar endereço e telefone das ASPs
+- [ ] Incluir explicações sobre o assunto, com links
 
 Código fonte e licença
 --
 
-O código está disponível em https://github.com/matehackers/cademeuposto-web e licenciado sob [GPL3](LICENSE). Os dados estão disponíveis no site [DataPoa](http://datapoa.com.br) e sob a [Licença Aberta para Bases de Dados (ODbL) do Open Data Commons](http://www.opendefinition.org/licenses/odc-odbl)
+O código fonte está disponível em https://github.com/matehackers/cademeuposto-web e licenciado sob [GPL3](LICENSE). Os dados estão disponíveis no site [DataPoa](http://datapoa.com.br) sob a [Licença Aberta para Bases de Dados (ODbL) do Open Data Commons](http://www.opendefinition.org/licenses/odc-odbl).
 
