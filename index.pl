@@ -94,7 +94,7 @@ Content-Type: text/html; charset=utf-8
 		<center>
 		<form class="navbar-form" role="form" action="./#resultado">
 			<div class="form-group">
-				<input type="text" name="rua" placeholder="Nome da rua" class="form-control" value="${rua}">
+				<input type="text" name="rua" placeholder="${rua}" class="form-control">
 			</div>
 <!--
 			<div class="form-group">
