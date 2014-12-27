@@ -76,7 +76,6 @@ Content-Type: text/html; charset=utf-8
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
-	</div>
 </nav>
 
 <div class="jumbotron">
@@ -139,6 +138,7 @@ EOF
 }
 
 print <<EOF;
+<div class="container">
 	<p>Em caso de d&uacute;vida, ligue para o <b>156</b> com qualquer telefone de Porto Alegre - RS ou (51) 3289-0156, op&ccedil;&atilde;o 9.</p>
 
 	<hr>
